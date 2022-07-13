@@ -1,27 +1,16 @@
-import React, {useState} from 'react';
-import {Text} from 'react-native';
-import SearchBox from '../../components/search-box';
+import React from 'react';
+import {StatusBar} from 'react-native';
 import {ScreenContent} from './styles';
-import Filter from '../../components/filter';
 import History from '../../components/history';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 export default function Home() {
-  const [query, setQuery] = useState('');
-
-  const onSearch = () => {
-    //
-  };
-
   return (
-    <ScreenContent>
-      <SearchBox onSearch={onSearch} onChangeText={setQuery} />
-      <Filter />
-      <History />
-    </ScreenContent>
+    <SafeAreaView style={{backgroundColor: '#FFF'}}>
+      <StatusBar barStyle={'dark-content'} backgroundColor={'#FFF'} />
+      <ScreenContent>
+        <History />
+      </ScreenContent>
+    </SafeAreaView>
   );
 }
-
-/*
-query { collection (slug:"office") { id, type, seo { title } meta { selectedFacets { key, value } } }
-}
- */

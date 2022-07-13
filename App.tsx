@@ -21,28 +21,25 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import Home from './src/screens/home';
 import {ThemeProvider} from 'styled-components';
 import {lightTheme} from './src/utils/theme';
+import {ApolloProvider} from '@apollo/client';
+import {apolloClient} from './src/services';
+import RootNavigation from './src/navigation';
+import {NavigationContainer} from '@react-navigation/native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <ThemeProvider theme={lightTheme}>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        {/*<SectionList*/}
-        {/*  contentInsetAdjustmentBehavior="automatic"*/}
-        {/*  style={backgroundStyle}*/}
-        {/*/>*/}
-        <Home />
-      </SafeAreaView>
-    </ThemeProvider>
+    <ApolloProvider client={apolloClient}>
+      <ThemeProvider theme={lightTheme}>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <RootNavigation />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </ThemeProvider>
+    </ApolloProvider>
   );
 };
 

@@ -1,11 +1,13 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {FilterTagButton, FilterTagTitle} from './styles';
+import {FilterTagButton, FilterTagTitle, styles} from './styles';
+import MCI from 'react-native-vector-icons/MaterialCommunityIcons';
+import {View} from 'react-native';
 
 interface Props {
   selected: boolean;
   isLast: boolean;
   onPress: (e: string) => void;
+  title: string;
 }
 
 export default function FilterTag(props: Props) {
@@ -13,8 +15,13 @@ export default function FilterTag(props: Props) {
     <FilterTagButton
       {...props}
       selected={props.selected}
-      onPress={() => props.onPress('')}>
-      <FilterTagTitle selected={props.selected}>FilterTag</FilterTagTitle>
+      onPress={() => props.onPress(props.title)}>
+      <FilterTagTitle selected={props.selected}>{props.title}</FilterTagTitle>
+      {props.selected && (
+        <View style={styles.badge}>
+          <MCI name={'close'} color={'#FFF'} />
+        </View>
+      )}
     </FilterTagButton>
   );
 }

@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View} from 'react-native';
 import {SearchBoxContainer, SearchBoxInput} from './styles';
 import MC from 'react-native-vector-icons/MaterialIcons';
+import {Pressable} from 'react-native';
 
 interface Props {
   onChangeText: (e: string) => void;
   onSearch: () => void;
+  disableSearch: boolean;
 }
 
 export default function SearchBox(props: Props) {
@@ -15,8 +16,13 @@ export default function SearchBox(props: Props) {
         placeholder={'Search here'}
         multiline={false}
         onChangeText={props.onChangeText}
+        onSubmitEditing={props.onSearch}
+        clearButtonMode="while-editing"
+        returnKeyType={'search'}
       />
-      <MC name={'search'} size={20} onPress={props.onSearch} />
+      <Pressable onPress={props.onSearch} disabled={props.disableSearch}>
+        <MC name={'search'} size={20} />
+      </Pressable>
     </SearchBoxContainer>
   );
 }

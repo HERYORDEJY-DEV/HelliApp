@@ -1,10 +1,20 @@
 import styled from 'styled-components';
-import {Pressable, Text, TextInput, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
+
+export const styles = StyleSheet.create({
+  badge: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    backgroundColor: 'blue',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#FFF',
+  },
+});
 
 export const FilterContainer = styled(View)`
   margin: 10px 0;
-
-  height: 50px;
   padding-right: 0px;
 `;
 
@@ -22,6 +32,7 @@ export const FilterTagButton = styled(Pressable)<{
   align-items: center;
   padding: 0 20px;
   margin-left: 20px;
+  margin-bottom: 10px;
   margin-right: ${p => (p.isLast ? '20px' : 0)};
 `;
 

@@ -81,3 +81,5 @@ export const darkTheme = {
     listItem: '#424242',
   },
 };
+
+export type CustomThemeType = typeof lightTheme;
